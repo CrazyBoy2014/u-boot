@@ -5,4 +5,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: git --version
+      - run: git clone https://github.com/CrazyBoy2014/u-boot
+      - run: cd u-boot
+      - run: sudo apt-get install gcc-arm-linux-gnueabihf bc bison build-essential coccinelle device-tree-compiler dfu-util efitools flex gdisk graphviz imagemagick libgnutls28-dev libguestfs-tools libncurses-dev libpython3-dev libsdl2-dev libssl-dev lz4 lzma lzma-alone openssl pkg-config python3 python3-asteval python3-coverage python3-filelock python3-pkg-resources python3-pycryptodome python3-pyelftools python3-pytest python3-pytest-xdist python3-sphinxcontrib.apidoc python3-sphinx-rtd-theme python3-subunit python3-testtools python3-venv swig uuid-dev
+      - run: make Cubieboard_defconfig
+      - run: make -j$(nproc)
